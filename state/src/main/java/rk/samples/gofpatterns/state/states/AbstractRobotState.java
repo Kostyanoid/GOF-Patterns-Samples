@@ -1,6 +1,6 @@
-package com.rk.samples.gofpatterns.state.states;
+package rk.samples.gofpatterns.state.states;
 
-import com.rk.samples.gofpatterns.state.model.Robot;
+import rk.samples.gofpatterns.state.model.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

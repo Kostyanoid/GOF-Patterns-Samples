@@ -1,8 +1,8 @@
-package com.rk.samples.gofpatterns.state.model;
+package rk.samples.gofpatterns.state.model;
 
-import com.rk.samples.gofpatterns.state.states.AbstractRobotState;
-import com.rk.samples.gofpatterns.state.states.PowerOffState;
-import com.rk.samples.gofpatterns.state.states.WaitingState;
+import rk.samples.gofpatterns.state.states.AbstractRobotState;
+import rk.samples.gofpatterns.state.states.PowerOffState;
+import rk.samples.gofpatterns.state.states.WaitingState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

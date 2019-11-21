@@ -1,4 +1,4 @@
-package com.rk.samples.gofpatterns.state.states;
+package rk.samples.gofpatterns.state.states;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

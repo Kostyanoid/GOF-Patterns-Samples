@@ -1,6 +1,6 @@
-package com.rk.samples.gofpatterns.state.model;
+package rk.samples.gofpatterns.state.model;
 
-import com.rk.samples.gofpatterns.state.states.AbstractRobotState;
+import rk.samples.gofpatterns.state.states.AbstractRobotState;
 
 public abstract class Robot {
     protected AbstractRobotState currentState;
