@@ -1,9 +1,9 @@
-package com.rk.samples.gofpatterns.state;
+package rk.samples.gofpatterns.state;
 
-import com.rk.samples.gofpatterns.state.model.Robot;
-import com.rk.samples.gofpatterns.state.model.SimpleRobot;
-import com.rk.samples.gofpatterns.state.states.AbstractRobotState;
-import com.rk.samples.gofpatterns.state.states.PowerOffState;
+import rk.samples.gofpatterns.state.model.Robot;
+import rk.samples.gofpatterns.state.model.SimpleRobot;
+import rk.samples.gofpatterns.state.states.AbstractRobotState;
+import rk.samples.gofpatterns.state.states.PowerOffState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
