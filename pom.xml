@@ -16,6 +16,7 @@
     <modules>
         <module>visitor</module>
         <module>state</module>
+        <module>strategy</module>
     </modules>
 
     <dependencies>
