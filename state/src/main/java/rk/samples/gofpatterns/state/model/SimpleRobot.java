@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 public class SimpleRobot extends Robot {
     private static final Logger logger = LogManager.getLogger(SimpleRobot.class);
-    private static final byte maxCharge = 3;
+    private static final byte MAX_CHARGE = 3;
 
     public SimpleRobot() {
-        this.charge = maxCharge;
+        this.charge = MAX_CHARGE;
     }
 
     public SimpleRobot(AbstractRobotState initialState) {
@@ -24,8 +24,8 @@ public class SimpleRobot extends Robot {
     public void setCharge(byte charge) {
         if (charge < 0)
             throw new IllegalArgumentException("Charge cannot be less than zero");
-        if (charge > maxCharge)
-            charge = maxCharge;
+        if (charge > MAX_CHARGE)
+            charge = MAX_CHARGE;
         this.charge = charge;
     }
 

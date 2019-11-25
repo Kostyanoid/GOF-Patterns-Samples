@@ -7,8 +7,8 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.rk.samples.gofpatterns.state.model" level="trace">
-            <AppenderRef ref="stdout"/>
+        <Logger name="com.rk.samples.gofpatterns.state.model" level="trace" additivity="false">
+            <AppenderRef ref="Console"/>
         </Logger>
         <Root level="debug">
             <AppenderRef ref="Console"/>
