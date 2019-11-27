@@ -26,19 +26,24 @@ public class DifferentialEquationsSystemSolvingParameters {
         this.step = step;
     }
 
-    public double getxStart() {
+    public double getXStart() {
         return xStart;
     }
 
-    public void setxStart(double xStart) {
+    public void setXStart(double xStart) {
         this.xStart = xStart;
     }
 
-    public double getxEnd() {
+    public double getXEnd() {
         return xEnd;
     }
 
-    public void setxEnd(double xEnd) {
+    public void setYEnd(double xEnd) {
+        this.xEnd = xEnd;
+    }
+
+    public void setInterval(double xStart, double xEnd) {
+        this.xStart = xStart;
         this.xEnd = xEnd;
     }
 

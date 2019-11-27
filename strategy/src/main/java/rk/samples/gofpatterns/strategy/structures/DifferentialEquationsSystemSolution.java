@@ -1,10 +1,11 @@
 package rk.samples.gofpatterns.strategy.structures;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatXValue;
+import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatYValue;
 
 public class DifferentialEquationsSystemSolution {
     private List<ByPointSolution> byPointSolutions = new ArrayList<>();
@@ -60,8 +61,8 @@ public class DifferentialEquationsSystemSolution {
 
         @Override
         public String toString() {
-            return "x: " + x +
-                    " y = " + Arrays.stream(y).mapToObj(String::valueOf).collect(Collectors.joining(", ", "(", ");"));
+            return "x: " + formatXValue(x) +
+                    " y = " + formatYValue(y);
         }
     }
 }

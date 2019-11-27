@@ -8,31 +8,24 @@ import rk.samples.gofpatterns.strategy.structures.DifferentialEquationsSystemSol
 public class DifferentialEquationsSystemResolver {
     private DifferentialEquationsSystem equationsSystem;
     private DifferentialEquationsSystemSolvingMethod method;
-    private double accuracy;
-    private double xStart;
-    private double xEnd;
-    private double[] y0;
-    private double step;
+    private DifferentialEquationsSystemSolvingParameters parameters;
 
     public DifferentialEquationsSystemResolver() {
-        this.xStart = 0;
-        this.step = 1;
+        this.parameters = new DifferentialEquationsSystemSolvingParameters();
     }
 
-    public DifferentialEquationsSystemResolver(DifferentialEquationsSystem equationsSystem, double accuracy) {
+    public DifferentialEquationsSystemResolver(DifferentialEquationsSystem equationsSystem) {
         this();
         this.equationsSystem = equationsSystem;
-        this.y0 = new double[equationsSystem.getDimension()];
-        this.accuracy = accuracy;
+        this.parameters.setY0(new double[equationsSystem.getDimension()]);
+    }
+
+    public DifferentialEquationsSystemResolver(DifferentialEquationsSystem equationsSystem, DifferentialEquationsSystemSolvingParameters parameters) {
+        this(equationsSystem);
+        this.parameters = parameters;
     }
 
     public DifferentialEquationsSystemSolution solve() {
-        DifferentialEquationsSystemSolvingParameters parameters = new DifferentialEquationsSystemSolvingParameters();
-        parameters.setAccuracy(accuracy);
-        parameters.setStep(step);
-        parameters.setxStart(xStart);
-        parameters.setxEnd(xEnd);
-        parameters.setY0(y0);
         return method.solve(equationsSystem, parameters);
     }
 
@@ -45,12 +38,8 @@ public class DifferentialEquationsSystemResolver {
     }
 
     public void setInterval(double xStart, double xEnd) {
-        this.xStart = xStart;
-        this.xEnd = xEnd;
-    }
-
-    public double getAccuracy() {
-        return accuracy;
+        parameters.setXStart(xStart);
+        parameters.setYEnd(xEnd);
     }
 
     public DifferentialEquationsSystem getEquationsSystem() {
@@ -61,35 +50,43 @@ public class DifferentialEquationsSystemResolver {
         return method;
     }
 
+    public DifferentialEquationsSystemSolvingParameters getParameters() {
+        return parameters;
+    }
+
     public double getXStart() {
-        return xStart;
+        return parameters.getXStart();
     }
 
     public double getXEnd() {
-        return xEnd;
+        return parameters.getXEnd();
     }
 
     public double[] getY0() {
-        return y0;
+        return parameters.getY0();
     }
 
     public double getStep() {
-        return step;
+        return parameters.getStep();
+    }
+
+    public void setParameters(DifferentialEquationsSystemSolvingParameters parameters) {
+        this.parameters = parameters;
     }
 
     public void setXStart(double xStart) {
-        this.xStart = xStart;
+        parameters.setXStart(xStart);
     }
 
     public void setXEnd(double xEnd) {
-        this.xEnd = xEnd;
+        parameters.setYEnd(xEnd);
     }
 
     public void setY0(double[] y0) {
-        this.y0 = y0;
+        parameters.setY0(y0);
     }
 
     public void setStep(double step) {
-        this.step = step;
+        parameters.setStep(step);
     }
 }

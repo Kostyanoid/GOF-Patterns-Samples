@@ -6,6 +6,9 @@ import rk.samples.gofpatterns.strategy.structures.DifferentialEquationsSystem;
 import rk.samples.gofpatterns.strategy.structures.DifferentialEquationsSystemSolution;
 import rk.samples.gofpatterns.strategy.structures.DifferentialEquationsSystemSolvingParameters;
 
+import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatXValue;
+import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatYValue;
+
 public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
     private static final Logger logger = LogManager.getLogger(EulerMethod.class);
 
@@ -19,31 +22,31 @@ public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
     @Override
     public DifferentialEquationsSystemSolution solve(DifferentialEquationsSystem equationsSystem, DifferentialEquationsSystemSolvingParameters parameters) {
         DifferentialEquationsSystemSolution solution = new DifferentialEquationsSystemSolution();
-        double x = parameters.getxStart();
+        double x = parameters.getXStart();
         double h = parameters.getStep();
         double[] y = parameters.getY0();
-        int dimenssion = equationsSystem.getDimension();
+        int dimension = equationsSystem.getDimension();
         int stepNumber = 0;
 
-        logger.info(NAME + " method started.");
-        logger.trace("x0: {}, y0: {}, step: {}", x, y, h);
+        logger.debug(NAME + " method started.");
+        logger.trace("x0: {}, y0: {}, step: {}", formatXValue(x), formatYValue(y), formatXValue(h));
 
         solution.addSolution(x, y);
 
-        while (between(x + h, parameters.getxStart(), parameters.getxEnd())) {
-            double[] nextY = new double[dimenssion];
-            for (int i = 0; i < dimenssion; i++) {
+        while (between(x + h, parameters.getXStart(), parameters.getXEnd())) {
+            double[] nextY = new double[dimension];
+            for (int i = 0; i < dimension; i++) {
                 nextY[i] = y[i] + h * equationsSystem.getEquation(i).calculate(x, y);
             }
             x = x + h;
-            System.arraycopy(nextY, 0, y, 0, dimenssion);
+            System.arraycopy(nextY, 0, y, 0, dimension);
             solution.addSolution(x, y);
             stepNumber++;
 
-            logger.trace("{}: x = {}, y = {}", stepNumber, x, y);
+            logger.trace("{}: x = {}, y = {}", stepNumber, formatXValue(x), formatYValue(y));
         }
 
-        logger.info(NAME + " method finished");
+        logger.debug(NAME + " method finished");
 
         return solution;
     }
