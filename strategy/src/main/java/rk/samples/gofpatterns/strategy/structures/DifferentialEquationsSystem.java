@@ -12,6 +12,10 @@ public class DifferentialEquationsSystem {
         this.equations = new ArrayList<>(dimension);
     }
 
+    public List<Differential> getEquations() {
+        return equations;
+    }
+
     public int getDimension() {
         return dimension;
     }

@@ -8,6 +8,7 @@ import rk.samples.gofpatterns.strategy.structures.DifferentialEquationsSystemSol
 
 import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatXValue;
 import static rk.samples.gofpatterns.strategy.utils.DecimalFormatter.formatYValue;
+import static rk.samples.gofpatterns.strategy.utils.NumbersUtil.between;
 
 public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
     private static final Logger logger = LogManager.getLogger(EulerMethod.class);
@@ -24,14 +25,17 @@ public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
         DifferentialEquationsSystemSolution solution = new DifferentialEquationsSystemSolution();
         double x = parameters.getXStart();
         double h = parameters.getStep();
-        double[] y = parameters.getY0();
         int dimension = equationsSystem.getDimension();
+        double[] y0 = new double[dimension];
+        System.arraycopy(parameters.getY0(), 0, y0, 0, dimension);
+        solution.addSolution(x, y0);
         int stepNumber = 0;
 
         logger.debug(NAME + " method started.");
-        logger.trace("x0: {}, y0: {}, step: {}", formatXValue(x), formatYValue(y), formatXValue(h));
+        logger.trace("x0: {}, y0: {}, step: {}", formatXValue(x), formatYValue(y0), formatXValue(h));
 
-        solution.addSolution(x, y);
+        double[] y = new double[dimension];
+        System.arraycopy(parameters.getY0(), 0, y, 0, dimension);
 
         while (between(x + h, parameters.getXStart(), parameters.getXEnd())) {
             double[] nextY = new double[dimension];
@@ -40,7 +44,7 @@ public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
             }
             x = x + h;
             System.arraycopy(nextY, 0, y, 0, dimension);
-            solution.addSolution(x, y);
+            solution.addSolution(x, nextY);
             stepNumber++;
 
             logger.trace("{}: x = {}, y = {}", stepNumber, formatXValue(x), formatYValue(y));
@@ -49,13 +53,5 @@ public class EulerMethod implements DifferentialEquationsSystemSolvingMethod {
         logger.debug(NAME + " method finished");
 
         return solution;
-    }
-
-    private boolean between(double x, double firstBound, double secondBound) {
-        if (firstBound >= secondBound) {
-            return x >= secondBound && x <= firstBound;
-        } else {
-            return x >= firstBound && x <= secondBound;
-        }
     }
 }
