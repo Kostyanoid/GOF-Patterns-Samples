@@ -17,6 +17,7 @@
         <module>visitor</module>
         <module>state</module>
         <module>strategy</module>
+        <module>singleton</module>
     </modules>
 
     <dependencies>
