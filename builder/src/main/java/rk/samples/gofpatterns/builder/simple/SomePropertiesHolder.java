@@ -1,4 +1,4 @@
-package rk.samples.gofpatterns.builder;
+package rk.samples.gofpatterns.builder.simple;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
