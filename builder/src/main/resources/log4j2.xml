@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false">
+                <ScriptPatternSelector defaultPattern="%highlight{%d{HH:mm:ss.SSS} %-6level %-17logger{1} - %msg%n}{INFO=green, TRACE=blue, DEBUG=grey}">
+                    <Script name="selector" language="javascript"><![CDATA[
+                        var result;
+                        if (logEvent.getLevel().equals(org.apache.logging.log4j.Level.ERROR)) {
+                            result = "ERROR"
+                        } else {
+                            result = "ALL_OTHERS"
+                        }
+                        result;
+                      ]]>
+                    </Script>
+                    <PatternMatch key="ERROR" pattern="%highlight{%d{HH:mm:ss.SSS} %-6level %-17logger{1} %ex{short.className} - %msg%n}"/>
+                    <PatternMatch key="ALL_OTHERS" pattern="%highlight{%d{HH:mm:ss.SSS} %-6level %-17logger{1} - %msg%n}{INFO=green, TRACE=blue, DEBUG=grey}"/>
+                </ScriptPatternSelector>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
