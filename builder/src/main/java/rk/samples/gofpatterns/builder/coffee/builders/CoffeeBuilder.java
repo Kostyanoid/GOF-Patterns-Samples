@@ -1,10 +1,12 @@
-package rk.samples.gofpatterns.builder.coffee;
+package rk.samples.gofpatterns.builder.coffee.builders;
 
+import rk.samples.gofpatterns.builder.coffee.Coffee;
+import rk.samples.gofpatterns.builder.coffee.CoffeeType;
 import rk.samples.gofpatterns.builder.coffee.ingredient.Syrup;
 import rk.samples.gofpatterns.builder.coffee.ingredient.Ingredient;
 
 public class CoffeeBuilder implements CoffeeAndRecipeBuilder {
-    private Coffee coffee;
+    protected Coffee coffee;
 
     @Override
     public CoffeeBuilder reset() {

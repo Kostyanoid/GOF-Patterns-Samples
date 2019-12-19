@@ -1,9 +1,9 @@
-package rk.samples.gofpatterns.builder.coffee.recipe;
+package rk.samples.gofpatterns.builder.coffee.builders;
 
-import rk.samples.gofpatterns.builder.coffee.CoffeeAndRecipeBuilder;
 import rk.samples.gofpatterns.builder.coffee.CoffeeType;
 import rk.samples.gofpatterns.builder.coffee.ingredient.Ingredient;
 import rk.samples.gofpatterns.builder.coffee.ingredient.Syrup;
+import rk.samples.gofpatterns.builder.coffee.recipe.CoffeeRecipe;
 
 public class RecipeBuilder implements CoffeeAndRecipeBuilder {
     private CoffeeRecipe recipe;

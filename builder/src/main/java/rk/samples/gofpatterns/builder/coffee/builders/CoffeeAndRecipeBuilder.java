@@ -1,4 +1,4 @@
-package rk.samples.gofpatterns.builder.coffee;
+package rk.samples.gofpatterns.builder.coffee.builders;
 
 import rk.samples.gofpatterns.builder.coffee.ingredient.Syrup;
 

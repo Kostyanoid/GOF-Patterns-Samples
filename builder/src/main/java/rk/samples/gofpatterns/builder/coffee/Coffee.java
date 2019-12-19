@@ -45,8 +45,8 @@ public class Coffee {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(coffeeType).append(": ").append("\n");
-        composition.forEach(ingr -> builder.append("\t--").append(ingr).append("\n"));
+        builder.append(coffeeType).append(": ");
+        composition.forEach(ingr -> builder.append("\n\t--").append(ingr));
         return builder.toString();
     }
 

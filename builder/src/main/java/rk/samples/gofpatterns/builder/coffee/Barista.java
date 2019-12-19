@@ -1,9 +1,10 @@
 package rk.samples.gofpatterns.builder.coffee;
 
+import rk.samples.gofpatterns.builder.coffee.builders.CoffeeBuilder;
 import rk.samples.gofpatterns.builder.coffee.ingredient.StrawberrySyrup;
 import rk.samples.gofpatterns.builder.coffee.ingredient.VanillaSyrop;
 import rk.samples.gofpatterns.builder.coffee.recipe.CoffeeRecipe;
-import rk.samples.gofpatterns.builder.coffee.recipe.RecipeBuilder;
+import rk.samples.gofpatterns.builder.coffee.builders.RecipeBuilder;
 
 import static rk.samples.gofpatterns.builder.coffee.CoffeeType.AMERICANO;
 import static rk.samples.gofpatterns.builder.coffee.CoffeeType.CAPPUCHINO;

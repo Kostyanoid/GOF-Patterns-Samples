@@ -3,8 +3,9 @@ package rk.samples.gofpatterns.builder;
 import lombok.extern.log4j.Log4j2;
 import rk.samples.gofpatterns.builder.coffee.Barista;
 import rk.samples.gofpatterns.builder.coffee.Coffee;
-import rk.samples.gofpatterns.builder.coffee.CoffeeBuilder;
+import rk.samples.gofpatterns.builder.coffee.builders.CoffeeBuilder;
 import rk.samples.gofpatterns.builder.coffee.CoffeeType;
+import rk.samples.gofpatterns.builder.coffee.builders.DefectiveCoffeeBuilder;
 import rk.samples.gofpatterns.builder.coffee.exception.NotReadyOrWrongCoffeeException;
 import rk.samples.gofpatterns.builder.coffee.recipe.CoffeeRecipe;
 import rk.samples.gofpatterns.builder.simple.SimplePropertiesBuilder;
@@ -53,18 +54,28 @@ public class BuilderSample {
         recipes.forEach((k, v) -> log.trace(v));
 
         CoffeeBuilder coffeeBuilder = new CoffeeBuilder();
+        log.trace("Try to make coffee with {}.", coffeeBuilder);
+        makeAllCaffeeByBuilder(coffeeBuilder, recipes, barista);
 
+
+        CoffeeBuilder defectiveCoffeeBuilder = new DefectiveCoffeeBuilder();
+        log.trace("Try to make coffee with {}.", defectiveCoffeeBuilder);
+        makeAllCaffeeByBuilder(defectiveCoffeeBuilder, recipes, barista);
+
+
+    }
+
+    private static void makeAllCaffeeByBuilder(CoffeeBuilder coffeeBuilder, Map<CoffeeType, CoffeeRecipe> recipes, Barista barista) {
         recipes.forEach((k, v) -> {
             log.trace("Make me {} please.", k.getTypeName());
             Coffee coffee = barista.makeCoffee(k, coffeeBuilder);
             if (!v.validate(coffee.getComposition())) {
-                log.error(new NotReadyOrWrongCoffeeException(k));
+                log.error(new NotReadyOrWrongCoffeeException(k).getMessage());
             } else {
                 log.info(coffee);
                 log.trace("{} is ready!", k.getTypeName());
             }
         });
-
     }
 
 
