@@ -23,12 +23,36 @@ public class Barista {
                 coffeeBuilder.addEspresso();
                 break;
             case AMERICANO:
-            case LATTE:
+                coffeeBuilder.setType(AMERICANO);
+                coffeeBuilder.addEspresso();
+                coffeeBuilder.addHotWater();
+                break;
             case CAPPUCHINO:
+                coffeeBuilder.setType(CAPPUCHINO);
+                coffeeBuilder.addEspresso();
+                coffeeBuilder.addMilkFoam();
+                break;
+            case LATTE:
+                coffeeBuilder.setType(LATTE);
+                coffeeBuilder.addMilkFoam();
+                coffeeBuilder.addEspresso();
+                break;
             case LATTE_WITH_VANILLA_SYRUP:
+                coffeeBuilder.setType(LATTE_WITH_VANILLA_SYRUP);
+                coffeeBuilder.addMilkFoam();
+                coffeeBuilder.addEspresso();
+                coffeeBuilder.addSyrup(new VanillaSyrop());
+                break;
             case LATTE_WITH_STRAWBERRY_SYRUP:
+                coffeeBuilder.setType(LATTE_WITH_STRAWBERRY_SYRUP);
+                coffeeBuilder.addMilkFoam();
+                coffeeBuilder.addEspresso();
+                coffeeBuilder.addSyrup(new StrawberrySyrup());
+                break;
             case IRISH:
-            default:
+                coffeeBuilder.setType(IRISH);
+                coffeeBuilder.addEspresso();
+                coffeeBuilder.addWhisky();
         }
 
         return coffeeBuilder.getCoffee();
@@ -45,7 +69,7 @@ public class Barista {
         return new RecipeBuilder()
                 .setType(AMERICANO)
                 .addEspresso()
-                .addHotWater(100)
+                .addHotWater()
                 .getRecipe();
     }
 
@@ -53,14 +77,14 @@ public class Barista {
         return new RecipeBuilder()
                 .setType(CAPPUCHINO)
                 .addEspresso()
-                .addMilkFoam(100)
+                .addMilkFoam()
                 .getRecipe();
     }
 
     public static CoffeeRecipe getLatteRecipe() {
         return new RecipeBuilder()
                 .setType(LATTE)
-                .addMilkFoam(100)
+                .addMilkFoam()
                 .addEspresso()
                 .getRecipe();
     }
@@ -68,7 +92,7 @@ public class Barista {
     public static CoffeeRecipe getLatteWithStrawberrySyrup() {
         return new RecipeBuilder()
                 .setType(LATTE_WITH_STRAWBERRY_SYRUP)
-                .addMilkFoam(100)
+                .addMilkFoam()
                 .addEspresso()
                 .addSyrup(new StrawberrySyrup())
                 .getRecipe();
@@ -77,7 +101,7 @@ public class Barista {
     public static CoffeeRecipe getLatteWithVanillaSyrup() {
         return new RecipeBuilder()
                 .setType(LATTE_WITH_VANILLA_SYRUP)
-                .addMilkFoam(100)
+                .addMilkFoam()
                 .addEspresso()
                 .addSyrup(new VanillaSyrop())
                 .getRecipe();

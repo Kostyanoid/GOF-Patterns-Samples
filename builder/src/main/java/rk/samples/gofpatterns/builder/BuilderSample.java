@@ -11,6 +11,7 @@ import rk.samples.gofpatterns.builder.simple.SimplePropertiesBuilder;
 import rk.samples.gofpatterns.builder.simple.SomePropertiesHolder;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class BuilderSample {
 
         Barista barista = new Barista();
 
-        Map<CoffeeType, CoffeeRecipe> recipes = new HashMap<>();
+        Map<CoffeeType, CoffeeRecipe> recipes = new EnumMap<>(CoffeeType.class);
         recipes.put(ESPRESSO, Barista.getEspressoRecipe());
         recipes.put(AMERICANO, Barista.getAmericanoRecipe());
         recipes.put(CAPPUCHINO, Barista.getCappuchinoRecipe());
@@ -51,16 +52,18 @@ public class BuilderSample {
         log.trace("We have got the following recipes:");
         recipes.forEach((k, v) -> log.trace(v));
 
-        log.trace("Make me please espresso.");
-
         CoffeeBuilder coffeeBuilder = new CoffeeBuilder();
-        Coffee coffee = barista.makeCoffee(ESPRESSO, coffeeBuilder);
-        if (!Barista.getEspressoRecipe().validate(coffee.getComposition())) {
-            log.error(new NotReadyOrWrongCoffeeException(ESPRESSO));
-        } else {
-            log.info(coffee);
-            log.trace("Espresso is ready!");
-        }
+
+        recipes.forEach((k, v) -> {
+            log.trace("Make me {} please.", k.getTypeName());
+            Coffee coffee = barista.makeCoffee(k, coffeeBuilder);
+            if (!v.validate(coffee.getComposition())) {
+                log.error(new NotReadyOrWrongCoffeeException(k));
+            } else {
+                log.info(coffee);
+                log.trace("{} is ready!", k.getTypeName());
+            }
+        });
 
     }
 

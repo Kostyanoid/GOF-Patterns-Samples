@@ -20,31 +20,31 @@ public class RecipeBuilder implements CoffeeAndRecipeBuilder {
 
     @Override
     public RecipeBuilder addEspresso() {
-        recipe.addIngredient(new Ingredient("Espresso", 50));
+        recipe.addIngredient(new Ingredient("Espresso", SMALL_AMOUNT));
         return this;
     }
 
     @Override
-    public RecipeBuilder addHotWater(Integer amount) {
-        recipe.addIngredient(new Ingredient("Hot watter", 100));
+    public RecipeBuilder addHotWater() {
+        recipe.addIngredient(new Ingredient("Hot watter", MIDDLE_AMOUNT));
         return this;
     }
 
     @Override
-    public RecipeBuilder addMilkFoam(Integer amount) {
-        recipe.addIngredient(new Ingredient("Milk foam", 100));
+    public RecipeBuilder addMilkFoam() {
+        recipe.addIngredient(new Ingredient("Milk foam", MIDDLE_AMOUNT));
         return this;
     }
 
     @Override
     public RecipeBuilder addSyrup(Syrup syrup) {
-        recipe.addIngredient(new Ingredient(syrup.getTaste(), 20));
+        recipe.addIngredient(new Ingredient(syrup.getTaste(), SYRUP_AMOUNT));
         return this;
     }
 
     @Override
     public RecipeBuilder addWhisky() {
-        recipe.addIngredient(new Ingredient("Whisky", 30));
+        recipe.addIngredient(new Ingredient("Whisky", WHISKY_AMOUNT));
         return this;
     }
 

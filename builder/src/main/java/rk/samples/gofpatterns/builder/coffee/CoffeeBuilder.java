@@ -14,31 +14,31 @@ public class CoffeeBuilder implements CoffeeAndRecipeBuilder {
 
     @Override
     public CoffeeBuilder addEspresso() {
-        coffee.addIngredient(new Ingredient("Espresso", 50));
+        coffee.addIngredient(new Ingredient("Espresso", SMALL_AMOUNT));
         return this;
     }
 
     @Override
-    public CoffeeBuilder addHotWater(Integer amount) {
-        coffee.addIngredient(new Ingredient("Hot watter", 100));
+    public CoffeeBuilder addHotWater() {
+        coffee.addIngredient(new Ingredient("Hot watter", MIDDLE_AMOUNT));
         return this;
     }
 
     @Override
-    public CoffeeBuilder addMilkFoam(Integer amount) {
-        coffee.addIngredient(new Ingredient("Milk foam", 100));
+    public CoffeeBuilder addMilkFoam() {
+        coffee.addIngredient(new Ingredient("Milk foam", MIDDLE_AMOUNT));
         return this;
     }
 
     @Override
     public CoffeeBuilder addSyrup(Syrup syrup) {
-        coffee.addIngredient(new Ingredient(syrup.getTaste(), 20));
+        coffee.addIngredient(new Ingredient(syrup.getTaste(), SYRUP_AMOUNT));
         return this;
     }
 
     @Override
     public CoffeeBuilder addWhisky() {
-        coffee.addIngredient(new Ingredient("Whisky", 30));
+        coffee.addIngredient(new Ingredient("Whisky", WHISKY_AMOUNT));
         return this;
     }
 
