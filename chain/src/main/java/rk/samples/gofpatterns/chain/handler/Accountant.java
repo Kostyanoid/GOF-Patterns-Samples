@@ -2,12 +2,12 @@ package rk.samples.gofpatterns.chain.handler;
 
 import lombok.extern.log4j.Log4j2;
 import rk.samples.gofpatterns.chain.model.Document;
+import rk.samples.gofpatterns.chain.util.KeywordsUtil;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 @Log4j2
 public class Accountant extends AbstractSighter {
@@ -44,17 +44,9 @@ public class Accountant extends AbstractSighter {
 
         private Set<Pattern> patterns = new HashSet<>();
 
-        Keywords(String... regexes) {
-            for (String regex : regexes) {
-                try {
-                    Pattern newPattern = Pattern.compile("\\b" + regex + "\\b", Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);
-                    patterns.add(newPattern);
-                } catch (PatternSyntaxException e) {
-                    log.error("Cannot compile regex: {}", regex);
-                }
-            }
+        Keywords(String... keywords) {
+            patterns.addAll(KeywordsUtil.compilePatternsFromKeywords(keywords));
         }
-
 
         @Override
         public boolean matchToDocumentPart(String documentPart) {
